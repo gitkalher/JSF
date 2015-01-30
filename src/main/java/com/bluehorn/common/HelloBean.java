@@ -1,4 +1,4 @@
-package com.mkyong.common;
+package com.bluehorn.common;
 
 import java.io.Serializable;
 import java.util.Arrays;
