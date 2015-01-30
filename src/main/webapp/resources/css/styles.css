@@ -1,0 +1,21 @@
+body {
+	margin: 0px;
+}
+
+#header {
+	background-color: #ccbbcc;
+	height: 80px;
+	padding: 2px 40px 2px 40px;
+}
+
+#content {
+	background-color: #dddddd;
+	margin:  5px 0px 5px;
+	padding: 5px 40px 5px; 
+}
+
+#footer {
+	background-color: #ccccab;
+	height: 80px;
+	padding: 2px 40px 2px 40px;
+}

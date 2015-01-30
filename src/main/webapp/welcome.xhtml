@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body bgcolor="white">
+
+	<ui:composition template="template/common/commonLayout.xhtml">
+		
+		<ui:param name="fileName" value="welcome.xhtml" />
+		
+		<ui:define name="header">
+			<h3>JSF 2.0 Hello World Example - welcome.xhtml</h3>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:panelGrid columns="1" border="1" cellpadding="5">
+				<h:column>Secret Code : #{helloBean.secretCode}</h:column>
+				<h:column>Secret Key : #{helloBean.secretKey}</h:column>
+			</h:panelGrid>
+
+			<h:panelGrid columns="2" border="1" cellpadding="5">
+
+				<h:column>#{label['helloBean.lbl.title']}</h:column>
+				<h:column>#{helloBean.title}</h:column>
+
+				<h:column>#{label['helloBean.lbl.firstName']}</h:column>
+				<h:column> #{helloBean.firstName}</h:column>
+
+				<h:column>#{label['helloBean.lbl.lastName']}</h:column>
+				<h:column> #{helloBean.lastName}</h:column>
+
+				<h:column>#{label['helloBean.lbl.gender']}</h:column>
+				<h:column> #{helloBean.gender}</h:column>
+
+				<h:column>#{label['helloBean.lbl.age']}</h:column>
+				<h:column> #{helloBean.age}</h:column>
+
+				<h:column>#{label['helloBean.lbl.dob']}</h:column>
+				<h:column> #{helloBean.dob}</h:column>
+
+				<h:column>#{label['helloBean.lbl.city']}</h:column>
+				<h:column> #{helloBean.city}</h:column>
+
+				<h:column>#{label['helloBean.lbl.salary']}</h:column>
+				<h:column> #{helloBean.salary}</h:column>
+
+				<h:column>#{label['helloBean.lbl.note']}</h:column>
+				<h:column> #{helloBean.note}</h:column>
+
+				<h:column>#{label['helloBean.lbl.language']}</h:column>
+				<h:column> #{helloBean.language}</h:column>
+
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<h:column>Vehicles : </h:column>
+				<h:column>#{helloBean.vehiclesAsString}</h:column>
+				<h:column>Pets : </h:column>
+				<h:column>#{helloBean.pets[0]} #{helloBean.pets[1]} #{helloBean.pets[2]} #{helloBean.pets[3]} #{helloBean.pets[4]}</h:column>
+				<h:column>Food Preferences : </h:column>
+				<h:column>#{helloBean.food[0]} #{helloBean.food[1]}</h:column>
+
+			</h:panelGrid>
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+</html>

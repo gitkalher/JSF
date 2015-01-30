@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:bt="http://binarybalkara.com/facelets">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+	<h:outputScript name="functions.js" library="js" />
+	<h:outputStylesheet name="styles.css" library="css" />
+</h:head>
+<h:body>
+
+	<ui:composition template="template/common/commonLayout.xhtml">
+
+		<ui:param name="fileName" value="hello.xhtml" />
+
+		<ui:define name="header">
+			<h3>JSF 2.0 Hello World Example - hello.xhtml</h3>
+		</ui:define>
+
+		<ui:define name="content">
+			<h:form>
+
+				<ui:remove>
+					<h:selectManyMenu id="manyMenuId">
+						<f:selectItem itemValue="2000" itemLabel="2000" />
+						<f:selectItem itemValue="2000" itemLabel="2001" />
+						<f:selectItem itemValue="2000" itemLabel="2002" />
+						<f:selectItem itemValue="2000" itemLabel="2003" />
+						<f:selectItem itemValue="2000" itemLabel="2004" />
+					</h:selectManyMenu>
+				</ui:remove>
+
+				<h:inputHidden id="hiddenId" value="#{helloBean.secretCode}" />
+
+				<h:panelGrid columns="6" cellspacing="2">
+					<bt:email redEmailTitle="Gmail" greenEmailTitle="Yahoo"
+						blueEmailTitle="Hotmail" />
+					<h:commandLink id="cmdLinkId2" action="welcome">
+						<f:param name="gui" value="JSF" />
+						<h:graphicImage id="iconFolderToolId" width="55" height="48"
+							library="images" name="wood-folder-tool.png" alt="Folder Tools" />
+					</h:commandLink>
+
+					<h:graphicImage id="iconFolderMusicId" width="55" height="48"
+						library="images" name="wood-folder-music.png" alt="Folder Music" />
+					<h:commandLink id="cmdLinkId1" value="Login here" />
+
+					<h:outputFormat
+						value="#{label['helloBean.lbl.firstName']}  {0} #{label['helloBean.lbl.lastName']} {1}">
+						<f:param name="fName" value="#{helloBean.firstName}" />
+						<f:param name="lName" value="#{helloBean.lastName}" />
+					</h:outputFormat>
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+
+					<h:outputLabel id="titleOutputId"
+						value="#{label['helloBean.lbl.title']}" />
+					<h:selectOneMenu id="titleSelectMenu" value="#{helloBean.title}"
+						required="true" requiredMessage="#{vm['helloBean.title']}">
+						<f:selectItem id="mr" itemValue="Mr" itemLabel="Mr" />
+						<f:selectItem id="mrs" itemValue="Mrs" itemLabel="Mrs" />
+						<f:selectItem id="ms" itemValue="Ms" itemLabel="Ms" />
+						<f:selectItem id="miss" itemValue="Miss" itemLabel="Miss" />
+					</h:selectOneMenu>
+					<h:message for="titleOutputId" style="color:red" />
+
+					<h:outputLabel id="firstNameOutputId"
+						value="#{label['helloBean.lbl.firstName']}"
+						style="#{firstNameInputId.valid ? '' : 'color:red'}" />
+					<h:inputText id="firstNameInputId" value="#{helloBean.firstName}"
+						required="true" requiredMessage="#{vm['helloBean.firstName']}"
+						validatorMessage="#{vm['helloBean.valid.firstName']}"
+						onchange="onChangeFirstName();" binding="#{firstNameInputId}"
+						style="#{firstNameInputId.valid ? '' : 'border:1px solid red'}"
+						valueChangeListener="#{helloBean.secretListener}">
+						<f:validateRegex pattern="^[a-zA-Z ]*$" />
+						<f:attribute name="secretKey" value="SDS-400-FEH-453-DFR" />
+					</h:inputText>
+
+					<h:message for="firstNameInputId" style="color:red" />
+
+					<h:outputLabel id="lastNameOutputId"
+						value="#{label['helloBean.lbl.lastName']}" />
+					<h:inputText id="lastNameInputId" value="#{helloBean.lastName}"
+						required="true" requiredMessage="#{vm['helloBean.lastName']}"
+						validatorMessage="#{vm['helloBean.valid.lastName']}">
+						<f:validateRegex pattern="^[a-zA-Z ]*$" />
+					</h:inputText>
+					<h:message for="lastNameInputId" style="color:red" />
+
+					<h:outputText id="pwdOutputId"
+						value="#{label['helloBean.lbl.pwd']}" />
+					<h:inputSecret id="pwdInputSecret" value="#{helloBean.pwd}"
+						required="true" requiredMessage="#{vm['helloBean.pwd']}">
+					</h:inputSecret>
+					<h:message for="pwdInputSecret" style="color:red" />
+
+					<h:outputText id="genderOutputId"
+						value="#{label['helloBean.lbl.gender']}" />
+					<h:selectOneRadio id="genderRadioId" value="#{helloBean.gender}"
+						required="true" requiredMessage="#{vm['helloBean.gender']}">
+						<f:selectItem id="male" itemValue="Male" itemLabel="Male" />
+						<f:selectItem id="female" itemValue="Female" itemLabel="Female" />
+						<f:selectItem id="other" itemValue="Other" itemLabel="Other" />
+					</h:selectOneRadio>
+					<h:message for="genderRadioId" style="color:red" />
+
+					<h:outputLabel id="ageOutputId"
+						value="#{label['helloBean.lbl.age']}" />
+					<h:inputText id="ageInputId" value="#{helloBean.age}"
+						required="true" requiredMessage="#{vm['helloBean.age']}"
+						validatorMessage="#{vm['helloBean.valid.age']}">
+						<f:validateLongRange minimum="19" maximum="85" />
+					</h:inputText>
+					<h:message for="ageInputId" style="color:red" />
+
+					<h:outputLabel id="dobOutputId"
+						value="#{label['helloBean.lbl.dob']}" />
+					<h:inputText id="dobInputId" value="#{helloBean.dob}"
+						converter="javax.faces.DateTime" required="true"
+						requiredMessage="#{vm['helloBean.dob']}"
+						validatorMessage="#{vm['helloBean.valid.dob']}">
+						<f:convertDateTime pattern="dd-MM-yyyy" />
+					</h:inputText>
+					<h:message for="dobInputId" style="color:red" />
+
+					<h:outputLabel id="cityOutputId"
+						value="#{label['helloBean.lbl.city']}" />
+					<h:inputText id="cityInputId" value="#{helloBean.city}"
+						required="true" requiredMessage="#{vm['helloBean.city']}"
+						validatorMessage="#{vm['helloBean.valid.city']}">
+						<f:validateRegex pattern="^[a-zA-Z ]*$" />
+					</h:inputText>
+					<h:message for="cityInputId" style="color:red" />
+
+					<h:outputLabel id="salaryOutputId"
+						value="#{label['helloBean.lbl.salary']}" />
+					<h:inputText id="salaryInputId" value="#{helloBean.salary}"
+						required="true" requiredMessage="#{vm['helloBean.salary']}"
+						validatorMessage="#{vm['helloBean.valid.salary']}">
+						<f:validateDoubleRange minimum="0" />
+					</h:inputText>
+					<h:message for="salaryInputId" style="color:red" />
+
+					<h:outputLabel id="noteOutputId"
+						value="#{label['helloBean.lbl.note']}" />
+					<h:inputTextarea id="noteTextareaId" value="#{helloBean.note}"
+						cols="25" rows="4" required="true"
+						requiredMessage="#{vm['helloBean.note']}" />
+					<h:message for="noteTextareaId" style="color:red" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="6">
+					<h:outputLabel id="languageOutputId"
+						value="#{label['helloBean.lbl.language']}" />
+					<h:selectOneListbox id="listId" value="#{helloBean.language}"
+						required="true" requiredMessage="#{vm['helloBean.language']}">
+						<f:selectItems value="#{helloBean.languageValue}" />
+					</h:selectOneListbox>
+					<h:message for="listId" style="color:red" />
+
+					<h:outputLabel id="foodOutputId"
+						value="#{label['helloBean.lbl.food']}" />
+					<h:selectManyListbox id="foodId" value="#{helloBean.food}"
+						required="true" requiredMessage="#{vm['helloBean.food']}">
+						<f:selectItems value="#{helloBean.foodValue}" />
+					</h:selectManyListbox>
+					<h:message for="foodId" style="color:red" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="3">
+					<h:selectManyCheckbox id="checkVehiclesId"
+						value="#{helloBean.vehicles}">
+						<f:selectItem id="bykeId" itemValue="byke" itemLabel="Byke" />
+						<f:selectItem id="carId" itemValue="car" itemLabel="Car" />
+						<f:selectItem id="truckId" itemValue="truck" itemLabel="Truck" />
+					</h:selectManyCheckbox>
+				</h:panelGrid>
+
+				<h:panelGrid columns="5">
+					<h:selectManyCheckbox id="checkPetsId" value="#{helloBean.pets}">
+						<f:selectItems value="#{helloBean.petsValues}" />
+					</h:selectManyCheckbox>
+				</h:panelGrid>
+
+
+				<h:commandButton id="btnProcess" action="#{helloBean.process}">
+					<f:attribute name="value" value="REGISTER USER" />
+				</h:commandButton>
+
+			</h:form>
+		</ui:define>
+
+	</ui:composition>
+</h:body>
+</html>
