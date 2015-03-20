@@ -7,12 +7,12 @@
 	<application>
 	
 		<resource-bundle>
-			<base-name>com.mkyong.common.validationMessages</base-name>
+			<base-name>com.bluehorn.common.validationMessages</base-name>
 			<var>vm</var>
 		</resource-bundle>
 
 		<resource-bundle>
-			<base-name>com.mkyong.common.labels</base-name>
+			<base-name>com.bluehorn.common.labels</base-name>
 			<var>label</var>
 		</resource-bundle>
 
